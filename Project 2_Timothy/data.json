@@ -1,0 +1,43 @@
+{
+  "year": ["2016", "2019", "2018"],
+    "title": ["Show", "Movie", "Feature"],
+    "director": ["Kevin", "Jack", "Paul"],
+    "actors": ["Esmerelda", "Cal", "Robert"],
+    "imdb": ["12345", "54321", "7777"],
+    "rating": ["15", 7, 12],
+    "plot": ["Boy meets girl, boy loses girl, boy finds girl, happily ever after.", "Stuff blows up.", "A group of kids survive a coding class."]
+}
+
+
+
+
+
+// var topMovies = [
+//   {
+//     Year: 2016,
+//     Title: "Show",
+//     Director: "Kevin",
+//     Actors: "Esmerelda",
+//     IMDB: "12345",
+//     Rating: 15,
+//     Plot: "Boy meets girl, boy loses girl, boy finds girl, happily ever after."
+//   },
+//   {
+//     Year: 2019,
+//     Title: "Movie",
+//     Director: "Jack",
+//     Actors: "Cal",
+//     IMDB: "54321",
+//     Rating: 7,
+//     Plot: "Stuff blows up."
+//   },
+//   {
+//     Year: 2018,
+//     Title: "Feature",
+//     Director: "Paul",
+//     Actors: "Robert",
+//     IMDB: "7777",
+//     Rating: 12,
+//     Plot: "A group of kids survive a coding class."
+//   }
+// ]

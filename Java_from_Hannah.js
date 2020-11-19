@@ -1,5 +1,6 @@
 // from data.js
 var tableData = data;
+console.log(data);
 
 // Find html tags/selectors
 var thead = d3.select("thead");

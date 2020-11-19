@@ -24,6 +24,10 @@ db = SQLAlchemy(app)
 def index():
     return render_template("index.html")
 
+@app.route('/data')
+def dataFile():
+    return render_template("data.html")
+
 @app.route('/api')
 def fetchData():
     cursor.execute("SELECT * FROM movie_meta LIMIT 10")

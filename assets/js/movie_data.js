@@ -11,9 +11,9 @@ var submit = d3.select("form")
 // Define function that appends values from key,value pairs in each "data" object 
 // entry to a table
 function tabler(data) {
-    data.forEach(function (ufo) {
+    data.forEach(function (movie) {
         var row = tbody.append("tr");
-        Object.entries(ufo).forEach(function ([key, value]) {
+        Object.entries(movie).forEach(function ([key, value]) {
             row.append("td").text(value);
         });
     });

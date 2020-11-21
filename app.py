@@ -24,11 +24,15 @@ db = SQLAlchemy(app)
 def index():
     return render_template("index.html")
 
+@app.route('/star.html')
+def star():
+    return render_template("star.html")
+
 @app.route('/data')
 def data():
     return render_template("data.html")
 
-@app.route('/api/data')
+@app.route('/api/data.html')
 def fetchData():
     cursor.execute('SELECT m.title, m.genres, m.release_date, c.movie_crew, c.movie_cast, m.overview, r.rating FROM movie_meta m INNER JOIN credits c ON m.id = c.id INNER JOIN ratings r ON m.id = r."movieId" LIMIT 10')
     columns = ('title', 'genres', 'release_date', 'movie_crew', 'movie_cast', 'overview', 'rating')

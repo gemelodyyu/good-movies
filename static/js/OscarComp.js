@@ -1,104 +1,105 @@
-//  --------------------------------------------------------------------------THIS CODE IS NOT OPERATIONAL YET
+// Bring in test data
+// var data = [
+//     {id: 862,
+//     title: "Toy Story",
+//     release_date: "1995-10-30",
+//     runtime: 81,
+//     adult: false,
+//     budget: 30000000,
+//     revenue: 373554033,
+//     oscar_nominations: true,
+//     rating: 4.5
+//     },
+//     {
+//     id: 8844,
+//     title: "Jumanji",
+//     release_date: "1996-12-15",
+//     runtime: 104,
+//     adult: false,
+//     budget: 65000000,
+//     revenue: 262797249,
+//     oscar_nominations: false,
+//     rating: 3
+//     },
+//     {
+//     id: 31357,
+//     title: "Waiting to Exhale",
+//     release_date: "1997-12-22",
+//     runtime: 127,
+//     genres: "[{‘id’: 35, ‘name’: ‘Comedy’}, {‘id’: 18, ‘name’: ‘Drama’}, {‘id’: 10749, ‘name’: ‘Romance’}]",
+//     adult: false,
+//     budget: 16000000,
+//     revenue: 81452156,
+//     oscar_nominations: true,
+//     rating: 2.5
+//     },
+//     {
+//     id: 11862,
+//     title: "Father of the Bride Part II",
+//     release_date: "1998-02-10",
+//     runtime: 106,
+//     genres: "[{‘id’: 35, ‘name’: ‘Comedy’}]",
+//     adult: false,
+//     budget: 0,
+//     revenue: 76578911,
+//     production_companies: "[{‘name’: ‘Sandollar Productions’, ‘id’: 5842}, {‘name’: ‘Touchstone Pictures’, ‘id’: 9195}]",
+//     imdb_id: "[{‘iso_3166_1’: ‘US’, ‘name’: ‘United States of America’}]",
+//     oscar_nominations: false,
+//     rating: 4.5
+//     },
+//     {
+//     id: 862,
+//     title: "Toy Story",
+//     release_date: "1995-10-30",
+//     runtime: 81,
+//     adult: false,
+//     budget: 20000000,
+//     revenue: 273554033,
+//     oscar_nominations: false,
+//     rating: 1
+//     },
+//     {
+//     id: 8844,
+//     title: "Jumanji",
+//     release_date: "1996-12-15",
+//     runtime: 104,
+//     adult: false,
+//     budget: 6000000,
+//     revenue: 232797249,
+//     oscar_nominations: true,
+//     rating: 5
+//     },
+//     {
+//     id: 31357,
+//     title: "Waiting to Exhale",
+//     release_date: "1997-12-22",
+//     runtime: 127,
+//     genres: "[{‘id’: 35, ‘name’: ‘Comedy’}, {‘id’: 18, ‘name’: ‘Drama’}, {‘id’: 10749, ‘name’: ‘Romance’}]",
+//     adult: false,
+//     budget: 12000000,
+//     revenue: 71452156,
+//     oscar_nominations: false,
+//     rating: 3.25
+//     },
+//     {
+//     id: 11862,
+//     title: "Father of the Bride Part II",
+//     release_date: "1998-02-10",
+//     runtime: 106,
+//     genres: "[{‘id’: 35, ‘name’: ‘Comedy’}]",
+//     adult: false,
+//     budget: 500000,
+//     revenue: 26578911,
+//     production_companies: "[{‘name’: ‘Sandollar Productions’, ‘id’: 5842}, {‘name’: ‘Touchstone Pictures’, ‘id’: 9195}]",
+//     imdb_id: "[{‘iso_3166_1’: ‘US’, ‘name’: ‘United States of America’}]",
+//     oscar_nominations: true,
+//     rating: 2.75
+//     }
+// ];
+// console.log(data);
 
-// Bring in Data from SQL
-var data = [
-    {id: 862,
-    title: "Toy Story",
-    release_date: "1995-10-30",
-    runtime: 81,
-    adult: false,
-    budget: 30000000,
-    revenue: 373554033,
-    oscar_nominations: true,
-    rating: 4.5
-    },
-    {
-    id: 8844,
-    title: "Jumanji",
-    release_date: "1996-12-15",
-    runtime: 104,
-    adult: false,
-    budget: 65000000,
-    revenue: 262797249,
-    oscar_nominations: false,
-    rating: 3
-    },
-    {
-    id: 31357,
-    title: "Waiting to Exhale",
-    release_date: "1997-12-22",
-    runtime: 127,
-    genres: "[{‘id’: 35, ‘name’: ‘Comedy’}, {‘id’: 18, ‘name’: ‘Drama’}, {‘id’: 10749, ‘name’: ‘Romance’}]",
-    adult: false,
-    budget: 16000000,
-    revenue: 81452156,
-    oscar_nominations: true,
-    rating: 2.5
-    },
-    {
-    id: 11862,
-    title: "Father of the Bride Part II",
-    release_date: "1998-02-10",
-    runtime: 106,
-    genres: "[{‘id’: 35, ‘name’: ‘Comedy’}]",
-    adult: false,
-    budget: 0,
-    revenue: 76578911,
-    production_companies: "[{‘name’: ‘Sandollar Productions’, ‘id’: 5842}, {‘name’: ‘Touchstone Pictures’, ‘id’: 9195}]",
-    imdb_id: "[{‘iso_3166_1’: ‘US’, ‘name’: ‘United States of America’}]",
-    oscar_nominations: false,
-    rating: 4.5
-    },
-    {
-    id: 862,
-    title: "Toy Story",
-    release_date: "1995-10-30",
-    runtime: 81,
-    adult: false,
-    budget: 20000000,
-    revenue: 273554033,
-    oscar_nominations: false,
-    rating: 1
-    },
-    {
-    id: 8844,
-    title: "Jumanji",
-    release_date: "1996-12-15",
-    runtime: 104,
-    adult: false,
-    budget: 6000000,
-    revenue: 232797249,
-    oscar_nominations: true,
-    rating: 5
-    },
-    {
-    id: 31357,
-    title: "Waiting to Exhale",
-    release_date: "1997-12-22",
-    runtime: 127,
-    genres: "[{‘id’: 35, ‘name’: ‘Comedy’}, {‘id’: 18, ‘name’: ‘Drama’}, {‘id’: 10749, ‘name’: ‘Romance’}]",
-    adult: false,
-    budget: 12000000,
-    revenue: 71452156,
-    oscar_nominations: false,
-    rating: 3.25
-    },
-    {
-    id: 11862,
-    title: "Father of the Bride Part II",
-    release_date: "1998-02-10",
-    runtime: 106,
-    genres: "[{‘id’: 35, ‘name’: ‘Comedy’}]",
-    adult: false,
-    budget: 500000,
-    revenue: 26578911,
-    production_companies: "[{‘name’: ‘Sandollar Productions’, ‘id’: 5842}, {‘name’: ‘Touchstone Pictures’, ‘id’: 9195}]",
-    imdb_id: "[{‘iso_3166_1’: ‘US’, ‘name’: ‘United States of America’}]",
-    oscar_nominations: true,
-    rating: 2.75
-    }
-];
-console.log(data);
+//Bring in the data from SQL
+
 
 //Separate movies into year buckets so we have a set of data for each year
 //Use map function to extract years, it will return a list of years
@@ -216,6 +217,7 @@ console.log(avgRateN);
 var trace1 = {
   x: finalYears,
   y: avgRevO,
+  name: "Oscar",
   type: "scatter"
 };
 
@@ -223,6 +225,7 @@ var trace1 = {
 var trace2 = {
   x: finalYears,
   y: avgRevN,
+  name: "Non",
   type: "scatter"
 };
 
@@ -237,12 +240,14 @@ Plotly.newPlot("revenue", revenue);
 var trace3 = {
   x: finalYears,
   y: avgBudO,
+  name: "Oscar",
   type: "scatter"
 };
 
 var trace4 = {
   x: finalYears,
   y: avgBudN,
+  name: "Non",
   type: "scatter"
 };
 
@@ -254,12 +259,14 @@ Plotly.newPlot("budget", budget);
 var trace5 = {
   x: finalYears,
   y: avgRateO,
+  name: "Oscar",
   type: "scatter"
 };
 
 var trace6 = {
   x: finalYears,
   y: avgRateN,
+  name: "Non",
   type: "scatter"
 };
 

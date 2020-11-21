@@ -17,9 +17,8 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 db = SQLAlchemy(app)
 
-# What are we doing with flask? Goal of web scraping hw is different from
-# goal of this assignment -- want to bring in data from postgresql server
-# to use in JS files to make web app.
+
+# Render HTML pages
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -28,11 +27,13 @@ def index():
 def star():
     return render_template("star.html")
 
-@app.route('/data')
+@app.route('/data.html')
 def data():
     return render_template("data.html")
 
-@app.route('/api/data.html')
+
+# Create flask APIs for each web page
+@app.route('/api/data')
 def fetchData():
     cursor.execute('SELECT m.title, m.genres, m.release_date, c.movie_crew, c.movie_cast, m.overview, r.rating FROM movie_meta m INNER JOIN credits c ON m.id = c.id INNER JOIN ratings r ON m.id = r."movieId" LIMIT 10')
     columns = ('title', 'genres', 'release_date', 'movie_crew', 'movie_cast', 'overview', 'rating')
@@ -48,7 +49,7 @@ def fetchData():
 @app.route('/api/')
 def getData():
     cursor.execute("SELECT * FROM movie_meta LIMIT 10")
-    columns = ('id', 'title', 'release_date', 'runtime', 'genres', 'adult', 'budget', 'revenue','production companies',
+    columns = ('id', 'title', 'release_date', 'runtime', 'genres', 'adult', 'budget', 'revenue','production_companies',
         'imdb_id')
     
     results = []

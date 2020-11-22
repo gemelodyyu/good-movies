@@ -32,13 +32,17 @@ d3.json("/api/data").then(movieData => {
 
     // Define function that appends values from key,value pairs in each "data" object 
     // entry to a table
+    
     function tabler(data) {
         data.forEach(function (movie) {
             var title = movie.title;
-            var genres = []
+            genres = []
             for (var i=0; i<movie.genres.length; i++) {
                 genres.push(movie.genres[i].name);
             }
+            // genres.forEach(function(g) {
+            //     console.log(g)
+            // })
             var date = movie.release_date;
             var director = movie.movie_crew.name;
             var cast = []
@@ -67,18 +71,30 @@ d3.json("/api/data").then(movieData => {
 
     // Define filter function
     function filterer(data, att, value) {
-        var filteredArray = data.filter(function (data) {
+        var filteredArray = data.filter(function (d) {
             if (att == "release_date") {
-                return data[att].split('-')[0] == value.trim();
+                return d[att].split('-')[0] == value.trim();
             } 
             else if (att == "movie_crew") {
-                return data[att].name.toLowerCase().trim() === value.toLowerCase().trim();
+                return d[att].name.toLowerCase().trim() === value.toLowerCase().trim();
+            }
+            // TO FIX: Return rows containing value in list of genres
+            else if (att=="genres") {
+                movieData.forEach(function (movie) {
+                    var genres = []
+                    for (var i=0; i<movie.genres.length; i++) {
+                        genres.push(movie.genres[i].name);
+                    }
+                    console.log(genres)
+                    console.log(genres.includes(value))
+                    return genres.includes(value)
+                })       
             }
 
-            // TO DO: Figure out how to filter by Genres & Actors
-
-            
-            return data[att].toLowerCase().trim() === value.toLowerCase().trim();
+            else if (att == "title") {
+                console.log(d[att].toLowerCase().trim()== value.toLowerCase().trim())
+                return d[att].toLowerCase().trim() == value.toLowerCase().trim();
+            }
         });
         return filteredArray;
     }

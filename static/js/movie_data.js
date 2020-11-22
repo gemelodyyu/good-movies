@@ -3,6 +3,26 @@ d3.json("/api/data").then(movieData => {
     // // from data.js
     // var tableData = data;
 
+    // Clean data 
+    movieData.forEach(function(d) {
+    // Parse genres as JSON
+        d.genres = d.genres.replaceAll("'","\"")
+        d.genres = JSON.parse(d.genres)
+
+        // Parse movie cast as JSON
+        d.movie_cast = d.movie_cast.replaceAll("'","\"").replaceAll('None','"None"')
+        try {
+            d.movie_cast = JSON.parse(d.movie_cast)   
+        } catch {}
+
+        // Parse director as JSON via a cheap hack
+        d.movie_crew = d.movie_crew.split(",",6)
+        d.movie_crew = d.movie_crew.slice(5,6)
+        d.movie_crew = d.movie_crew[0].replaceAll("'","\"")
+        d.movie_crew = "{" + d.movie_crew + "}"
+        d.movie_crew = JSON.parse(d.movie_crew)
+    })
+
     // Find html tags/selectors
     var thead = d3.select("thead");
     var tbody = d3.select("tbody");
@@ -10,15 +30,37 @@ d3.json("/api/data").then(movieData => {
     var submit = d3.select("#searchForm");
     var reset = d3.select("#reset-btn");
 
-
     // Define function that appends values from key,value pairs in each "data" object 
     // entry to a table
+    
     function tabler(data) {
         data.forEach(function (movie) {
+            var title = movie.title;
+            genres = []
+            for (var i=0; i<movie.genres.length; i++) {
+                genres.push(movie.genres[i].name);
+            }
+            // genres.forEach(function(g) {
+            //     console.log(g)
+            // })
+            var date = movie.release_date;
+            var director = movie.movie_crew.name;
+            var cast = []
+            for (var i=0; i<movie.movie_cast.length; i++) {
+                cast.push(movie.movie_cast[i].name)
+            }
+            var overview = movie.overview;
+            var rating = movie.rating;
+
             var row = tbody.append("tr");
-            Object.entries(movie).forEach(function ([key, value]) {
-                row.append("td").text(value);
-            });
+            row.append("td").text(title);
+            row.append("td").text(genres);
+            row.append("td").text(date);
+            row.append("td").text(director);
+            row.append("td").text(cast);
+            row.append("td").text(overview);
+            row.append("td").text(rating);
+
         });
     };
 
@@ -29,11 +71,30 @@ d3.json("/api/data").then(movieData => {
 
     // Define filter function
     function filterer(data, att, value) {
-        var filteredArray = data.filter(function (data) {
+        var filteredArray = data.filter(function (d) {
             if (att == "release_date") {
-                return data[att].split('-')[0] == value.trim();
+                return d[att].split('-')[0] == value.trim();
             } 
-            return data[att].toLowerCase().trim() === value.toLowerCase().trim();
+            else if (att == "movie_crew") {
+                return d[att].name.toLowerCase().trim() === value.toLowerCase().trim();
+            }
+            // TO FIX: Return rows containing value in list of genres
+            else if (att=="genres") {
+                movieData.forEach(function (movie) {
+                    var genres = []
+                    for (var i=0; i<movie.genres.length; i++) {
+                        genres.push(movie.genres[i].name);
+                    }
+                    console.log(genres)
+                    console.log(genres.includes(value))
+                    return genres.includes(value)
+                })       
+            }
+
+            else if (att == "title") {
+                console.log(d[att].toLowerCase().trim()== value.toLowerCase().trim())
+                return d[att].toLowerCase().trim() == value.toLowerCase().trim();
+            }
         });
         return filteredArray;
     }

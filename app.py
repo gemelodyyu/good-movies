@@ -25,7 +25,6 @@ def index():
 def star():
     return render_template("star.html")
 
-<<<<<<< HEAD
 @app.route('/comparison.html')        #31 - 43 are Geoff's lines
 def CompData():
     return render_template("comparison.html")
@@ -40,20 +39,12 @@ def fetchOscarData():
     films = json.dumps(results, default=str)
     return films
 
-=======
->>>>>>> 9661564bfbb3d2e407f3c17ade55f4f3cd21511b
 @app.route('/data.html')
 def data():
     return render_template("data.html")
 
-<<<<<<< HEAD
-=======
-
-# Create flask APIs for each web page
->>>>>>> 9661564bfbb3d2e407f3c17ade55f4f3cd21511b
 @app.route('/api/data')
 def fetchData():
-    cursor.execute('SELECT m.release_date, m.budget, m.revenue, r.rating, i.oscar_nominations FROM movie_meta m INNER JOIN ratings r ON m.id = r."movieId" LEFT JOIN oscars o ON m.title = o.title LEFT JOIN oscarindex i ON m.title = i.film')
     columns = ('title', 'genres', 'release_date', 'movie_crew', 'movie_cast', 'overview', 'rating')
     
     results = []

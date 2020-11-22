@@ -15,9 +15,8 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 db = SQLAlchemy(app)
 
-# What are we doing with flask? Goal of web scraping hw is different from
-# goal of this assignment -- want to bring in data from postgresql server
-# to use in JS files to make web app.
+
+# Render HTML pages
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -26,6 +25,7 @@ def index():
 def star():
     return render_template("star.html")
 
+<<<<<<< HEAD
 @app.route('/comparison.html')        #31 - 43 are Geoff's lines
 def CompData():
     return render_template("comparison.html")
@@ -40,10 +40,17 @@ def fetchOscarData():
     films = json.dumps(results, default=str)
     return films
 
+=======
+>>>>>>> 9661564bfbb3d2e407f3c17ade55f4f3cd21511b
 @app.route('/data.html')
 def data():
     return render_template("data.html")
 
+<<<<<<< HEAD
+=======
+
+# Create flask APIs for each web page
+>>>>>>> 9661564bfbb3d2e407f3c17ade55f4f3cd21511b
 @app.route('/api/data')
 def fetchData():
     cursor.execute('SELECT m.release_date, m.budget, m.revenue, r.rating, i.oscar_nominations FROM movie_meta m INNER JOIN ratings r ON m.id = r."movieId" LEFT JOIN oscars o ON m.title = o.title LEFT JOIN oscarindex i ON m.title = i.film')
@@ -60,7 +67,7 @@ def fetchData():
 @app.route('/api/')
 def getData():
     cursor.execute("SELECT * FROM movie_meta LIMIT 10")
-    columns = ('id', 'title', 'release_date', 'runtime', 'genres', 'adult', 'budget', 'revenue','production companies',
+    columns = ('id', 'title', 'release_date', 'runtime', 'genres', 'adult', 'budget', 'revenue','production_companies',
         'imdb_id')
     
     results = []

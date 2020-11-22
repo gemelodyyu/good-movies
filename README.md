@@ -10,5 +10,5 @@ To help out our future filmmakers and fellow movie-goers, we plan to provide an 
 ## Dataset Links: 
 
 
-* ["The Movies Dataset"](https://www.kaggle.com/rounakbanik/the-movies-dataset)
-* ["The Oscar Award, 1927-2020"](https://www.kaggle.com/unanimad/the-oscar-award) 
+* [The Movies Dataset](https://www.kaggle.com/rounakbanik/the-movies-dataset)
+* [The Oscar Award, 1927-2020](https://www.kaggle.com/unanimad/the-oscar-award) 

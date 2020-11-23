@@ -4,9 +4,7 @@ import psycopg2
 import json
 import os
 
-
 app = Flask(__name__)
-
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://"postgres":postgres@127.0.0.1:5432/ETL_Project'
 conn = psycopg2.connect(
@@ -27,15 +25,26 @@ def index():
 def star():
     return render_template("star.html")
 
+@app.route('/comparison.html')
+def CompData():
+    return render_template("comparison.html")
+
+@app.route('/api/comparison')
+def fetchOscarData():
+    cursor.execute('SELECT m.release_date, m.budget, m.revenue, r.rating, i.oscar_nominations FROM movie_meta m INNER JOIN ratings r ON m.id = r."movieId" LEFT JOIN oscars o ON m.title = o.title LEFT JOIN oscarindex i ON m.title = i.film')
+    columns = ('release_date', 'budget', 'revenue', 'ratings', 'oscar_nominations')
+    results = []
+    for row in cursor.fetchall():
+        results.append(dict(zip(columns,row)))
+    films = json.dumps(results, default=str)
+    return films
+
 @app.route('/data.html')
 def data():
     return render_template("data.html")
 
-
-# Create flask APIs for each web page
 @app.route('/api/data')
 def fetchData():
-    cursor.execute('SELECT m.title, m.genres, m.release_date, c.movie_crew, c.movie_cast, m.overview, r.rating FROM movie_meta m INNER JOIN credits c ON m.id = c.id INNER JOIN ratings r ON m.id = r."movieId" LIMIT 10')
     columns = ('title', 'genres', 'release_date', 'movie_crew', 'movie_cast', 'overview', 'rating')
     
     results = []
@@ -59,9 +68,6 @@ def getData():
     films = json.dumps(results, default=str)
     
     return films
-
-
-
 
 if __name__ == '__main__':
     app.run()

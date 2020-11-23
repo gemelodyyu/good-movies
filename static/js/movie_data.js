@@ -87,7 +87,7 @@ d3.json("/api/data").then(movieData => {
                     }
                     console.log(genres)
                     console.log(genres.includes(value))
-                    return genres.includes(value)
+                    if (genres.includes(value)) {return d[att]}
                 })       
             }
 

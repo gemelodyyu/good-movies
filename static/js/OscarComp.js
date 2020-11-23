@@ -43,11 +43,12 @@ var data = d3.json("/api/comparison").then(data => {
   for (var rO = 0; rO < finalYears.length; rO++) {
     oRevenue_sum = 0;
   var filteredYear = data.filter(e => finalYears[rO] == e.release_date.split("-")[0])
-  .filter(e => true == e.oscar_nominations);
+  .filter(e => e.oscar_nominations !== null);
   //  still in loop, append.avgRevO
   filteredYear.forEach(e => oRevenue_sum += e.revenue);
-  // console.log(filteredYear)
+  if (filteredYear.length > 0) {
   avgRevO.push(oRevenue_sum/filteredYear.length);
+    }
   };
   console.log(avgRevO);
 
@@ -56,9 +57,11 @@ var data = d3.json("/api/comparison").then(data => {
   for (var rN = 0; rN < finalYears.length; rN++) {
     nRevenue_sum = 0;
     var filteredYear = data.filter(e => finalYears[rN] == e.release_date.split("-")[0])
-    .filter(e => false == e.oscar_nominations);
+    .filter(e => e.oscar_nominations === null);
     filteredYear.forEach(e => nRevenue_sum += e.revenue);
+    if (filteredYear.length > 0) {
     avgRevN.push(nRevenue_sum/filteredYear.length);
+    }
   };
   console.log(avgRevN);
 
@@ -67,9 +70,11 @@ var data = d3.json("/api/comparison").then(data => {
   for (var bO = 0; bO < finalYears.length; bO++) {
     oBudget_sum = 0;
     var filteredYear = data.filter(e => finalYears[bO] == e.release_date.split("-")[0])
-    .filter(e => true == e.oscar_nominations);
+    .filter(e => e.oscar_nominations !== null);
     filteredYear.forEach(e => oBudget_sum += e.budget);
+    if (filteredYear.length > 0) {
     avgBudO.push(oBudget_sum/filteredYear.length);
+    }
   };
   console.log(avgBudO);
 
@@ -78,9 +83,11 @@ var data = d3.json("/api/comparison").then(data => {
   for (var bN = 0; bN < finalYears.length; bN++) {
     nBudget_sum = 0;
     var filteredYear = data.filter(e => finalYears[bN] == e.release_date.split("-")[0])
-    .filter(e => false == e.oscar_nominations);
+    .filter(e => e.oscar_nominations === null);
     filteredYear.forEach(e => nBudget_sum += e.budget);
+    if (filteredYear.length > 0) {
     avgBudN.push(nBudget_sum/filteredYear.length);
+    }
   };
   console.log(avgBudN);
 
@@ -89,9 +96,11 @@ var data = d3.json("/api/comparison").then(data => {
   for (var rtO = 0; rtO < finalYears.length; rtO++) {
     oRating_sum = 0;
     var filteredYear = data.filter(e => finalYears[rtO] == e.release_date.split("-")[0])
-    .filter(e => true == e.oscar_nominations);
+    .filter(e => e.oscar_nominations !== null);
     filteredYear.forEach(e => oRating_sum += e.ratings);
+    if (filteredYear.length > 0) {
     avgRateO.push(oRating_sum/filteredYear.length);
+    }
   };
   console.log(avgRateO);
 
@@ -100,9 +109,11 @@ var data = d3.json("/api/comparison").then(data => {
   for (var rtN = 0; rtN < finalYears.length; rtN++) {
     nRate_sum = 0;
     var filteredYear = data.filter(e => finalYears[rtN] == e.release_date.split("-")[0])
-    .filter(e => false == e.oscar_nominations);
+    .filter(e => e.oscar_nominations === null);
     filteredYear.forEach(e => nRate_sum += e.ratings);
+    if (filteredYear.length > 0) {
     avgRateN.push(nRate_sum/filteredYear.length);
+    }
   };
   console.log(avgRateN);
 

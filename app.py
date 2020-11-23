@@ -25,7 +25,7 @@ def index():
 def star():
     return render_template("star.html")
 
-@app.route('/comparison.html')        #31 - 43 are Geoff's lines
+@app.route('/comparison.html')
 def CompData():
     return render_template("comparison.html")
 

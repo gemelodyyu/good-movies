@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Movie Statistics By Year</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+<!-- navigation bar -->
+<nav class=“navbar navbar-expand-lg navbar-light bg-light”>
+  <div class=“container”>
+      <a class=“navbar-brand” href=“index.html”>Movies Statistics</a>
+      <!-- Toggler/collapsibe Button -->
+      <button class=“navbar-toggler” type=“button” data-toggle=“collapse” data-target=“#navbarSupportedContent”
+          aria-controls=“navbarSupportedContent” aria-expanded=“false” aria-label=“Toggle navigation”>
+          <span class=“navbar-toggler-icon”></span>
+      </button>
+      <!-- Navbar links -->
+      <div class=“collapse navbar-collapse” id=“navbarSupportedContent”>
+          <ul class=“navbar-nav ml-auto”>
+              <li class=“nav-item”>
+                  <a class=“nav-link” href=“comparisons.html”>Movie Success</a>
+              </li>
+              <li class=“nav-item”>
+                  <a class=“nav-link” href=“data.html”>Data</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+ 
+</nav>
+<div class="container">
+    <div class="row">
+      <div class="col-md-5 jumbotron text-center">
+        <h1>Movie Statistics by Year</h1>
+        <p>Below you will find interactive charts to explore movie statistics by year</p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="well">
+                <h5>Year of Movie's Release:</h5>
+                <select id = "selDataset"></select>
+               
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Demographic Info</h3>
+          </div>
+          <table id= "sample-metadata" class="table table-striped"><tbody></tbody></table>
+        <div id="sample-metadata" class="panel-body"></div>
+      </div>
+    </div>
+    <div class="col-md-2">
+        <div id="bar"></div>
+      </div>
+    </div>
+    <div><div id="plot"></div>
+    <select id = "selDataset"></select>
+    <table id= "sample-metadata"><tbody></tbody></table> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="madeUpData.js"></script>
+  <script src="app.js"></script>
+
+
+</body>
+
+</html>

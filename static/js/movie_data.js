@@ -19,7 +19,9 @@ d3.json("/api/data").then(movieData => {
         d.movie_crew = d.movie_crew.slice(5,6)
         d.movie_crew = d.movie_crew[0].replaceAll("'","\"")
         d.movie_crew = "{" + d.movie_crew + "}"
-        d.movie_crew = JSON.parse(d.movie_crew)
+        try {
+            d.movie_crew = JSON.parse(d.movie_crew)
+        } catch {d.movie_crew = "Data Not Available"}
     })
     console.log(movieData)
 
@@ -152,7 +154,7 @@ d3.json("/api/data").then(movieData => {
         // Remove existing table
         d3.selectAll("tr").remove();
 
-        var theader = ["Title", "Genres", "Release Date", "Crew", "Cast", "Overview", "Rating"]
+        var theader = ["Title", "Genres", "Release Date", "Director", "Cast", "Overview", "Rating"]
         var header = thead.append("tr")
         theader.forEach(function (att) {
             header.append("td").text(att);

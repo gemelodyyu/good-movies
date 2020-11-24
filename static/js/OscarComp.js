@@ -125,7 +125,10 @@ var data = d3.json("/api/comparison").then(data => {
     x: finalYears,
     y: avgRevO,
     name: "Oscar",
-    type: "scatter"
+    type: "scatter",
+    line: {
+      color: '#ffbf00'
+    }
   };
 
   // Create our second revenue trace
@@ -133,7 +136,10 @@ var data = d3.json("/api/comparison").then(data => {
     x: finalYears,
     y: avgRevN,
     name: "Non",
-    type: "scatter"
+    type: "scatter",
+    line: {
+      color: '#000000'
+    }
   };
 
   // The data array consists of both traces
@@ -151,19 +157,25 @@ var data = d3.json("/api/comparison").then(data => {
     x: finalYears,
     y: avgBudO,
     name: "Oscar",
-    type: "scatter"
+    type: "scatter",
+    line: {
+      color: '#ffbf00'
+    }
   };
 
   var trace4 = {
     x: finalYears,
     y: avgBudN,
     name: "Non",
-    type: "scatter"
+    type: "scatter",
+    line: {
+      color: '#000000'
+    }
   };
 
   var budget = [trace3, trace4];
   var layoutb = {
-    title: "Budget: Oscar Nominated Vs. Non-Oscar Nominated"
+    title: "Budget: Oscar Nominated Vs. Non-Oscar Nominated",
   };
 
   Plotly.newPlot("budget", budget, layoutb);
@@ -173,14 +185,20 @@ var data = d3.json("/api/comparison").then(data => {
     x: finalYears,
     y: avgRateO,
     name: "Oscar",
-    type: "scatter"
+    type: "scatter",
+    line: {
+      color: '#ffbf00'
+    }
   };
 
   var trace6 = {
     x: finalYears,
     y: avgRateN,
     name: "Non",
-    type: "scatter"
+    type: "scatter",
+    line: {
+      color: '#000000'
+    }
   };
 
   var ratings = [trace5, trace6];

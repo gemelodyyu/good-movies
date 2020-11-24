@@ -138,10 +138,13 @@ var data = d3.json("/api/comparison").then(data => {
 
   // The data array consists of both traces
   var revenue = [trace1, trace2];
+  var layoutr = {
+    title: "Revenue: Oscar Nominated Vs. Non-Oscar Nominated"
+  };
 
   // Note that we omitted the layout object this time
   // This will use default parameters for the layout
-  Plotly.newPlot("revenue", revenue);
+  Plotly.newPlot("revenue", revenue, layoutr);
   //------------------------------------------------------------------------------------------------------------------- Revenue
 
   var trace3 = {
@@ -159,8 +162,11 @@ var data = d3.json("/api/comparison").then(data => {
   };
 
   var budget = [trace3, trace4];
+  var layoutb = {
+    title: "Budget: Oscar Nominated Vs. Non-Oscar Nominated"
+  };
 
-  Plotly.newPlot("budget", budget);
+  Plotly.newPlot("budget", budget, layoutb);
   //  -----------------------------------------------------------------------------------------------------------------   Budget
 
   var trace5 = {
@@ -178,8 +184,11 @@ var data = d3.json("/api/comparison").then(data => {
   };
 
   var ratings = [trace5, trace6];
+  var layoutrt = {
+    title: "Audience Ratings: Oscar Nominated Vs. Non-Oscar Nominated"
+  }
 
-  Plotly.newPlot("ratings", ratings);
+  Plotly.newPlot("ratings", ratings, layoutrt);
 //  -----------------------------------------------------------------------------------------------------------------   Ratings
 
 });           //-------------------------------------------------------------------------------PUT EVERYTHING BEFORE THIS LINE

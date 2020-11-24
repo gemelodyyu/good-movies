@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
-<body class="container">
+<body>
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -48,90 +48,98 @@
     </nav>
 
     <!-- main content of Movie Data page -->
+<<<<<<< HEAD
     <div class="hero text-center">
         <br>
         <img src = ../static/images/film.png>
         <h1>Movie Database</h1>
     </div>
+=======
+>>>>>>> 87755360d649d7013dc8fb397f7de550e2dbb074
     <div class="container">
-        <div class="row margin-top-50">
-            <div class="col-md-2">
-                <aside class="filters">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Filter Search</div>
-                        <div class="panel-body">
-                            <form id="searchForm" onsubmit="handle();">
-                                <div class="form-group">
-                                    <ul class="list-group" id="filters">
-                                        <li class="filter list-group-item">
-                                            <label for="date">Year</label>
-                                            <input class="form-control" id="Year" type="text" placeholder="YYYY">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="form-group">
-                                    <ul class="list-group" id="filters">
-                                        <li class="filter list-group-item">
-                                            <label for="date">Genres</label>
-                                            <input class="form-control" id="Genres" type="text" placeholder="Genre">
-                                        </li>
-                                    </ul>
-                                </div>                                
-                                <div class="form-group">
-                                    <ul class="list-group" id="filters">
-                                        <li class="filter list-group-item">
-                                            <label for="date">Title</label>
-                                            <input class="form-control" id="Title" type="text" placeholder="Title">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="form-group">
-                                    <ul class="list-group" id="filters">
-                                        <li class="filter list-group-item">
-                                            <label for="date">Director</label>
-                                            <input class="form-control" id="Director" type="text"
-                                                placeholder="Director">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="form-group">
-                                    <ul class="list-group" id="filters">
-                                        <li class="filter list-group-item">
-                                            <label for="date">Actors</label>
-                                            <input class="form-control" id="Actors" type="text"
-                                                placeholder="Actor Name">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
-                            </form>
+        <div class="jumbotron text-center">
+            <h1>Movie Database</h1>
+        </div>
+        <div class="container">
+            <div class="row margin-top-50">
+                <div class="col-md-2">
+                    <aside class="filters">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Filter Search</div>
+                            <div class="panel-body">
+                                <form id="searchForm" onsubmit="handle();">
+                                    <div class="form-group">
+                                        <ul class="list-group" id="filters">
+                                            <li class="filter list-group-item">
+                                                <label for="date">Year</label>
+                                                <input class="form-control" id="Year" type="text" placeholder="YYYY">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <ul class="list-group" id="filters">
+                                            <li class="filter list-group-item">
+                                                <label for="date">Genres</label>
+                                                <input class="form-control" id="Genres" type="text" placeholder="Genre">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <ul class="list-group" id="filters">
+                                            <li class="filter list-group-item">
+                                                <label for="date">Title</label>
+                                                <input class="form-control" id="Title" type="text" placeholder="Title">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <ul class="list-group" id="filters">
+                                            <li class="filter list-group-item">
+                                                <label for="date">Director</label>
+                                                <input class="form-control" id="Director" type="text"
+                                                    placeholder="Director">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <ul class="list-group" id="filters">
+                                            <li class="filter list-group-item">
+                                                <label for="date">Actors</label>
+                                                <input class="form-control" id="Actors" type="text"
+                                                    placeholder="Actor Name">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                                </form>
+                            </div>
                         </div>
+                    </aside>
+                </div>
+                <div class="col-md-10">
+                    <div id="table-area" class="">
+                        <table id="movie-table" class="table table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="table-head">Title</th>
+                                    <th class="table-head">Genres</th>
+                                    <th class="table-head">Release Date</th>
+                                    <th class="table-head">Director</th>
+                                    <th class="table-head">Cast</th>
+                                    <th class="table-head">Overview</th>
+                                    <th class="table-head">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
-                </aside>
-            </div>
-            <div class="col-md-10">
-                <div id="table-area" class="">
-                    <table id="movie-table" class="table table-striped table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="table-head">Title</th>
-                                <th class="table-head">Genres</th>
-                                <th class="table-head">Release Date</th>
-                                <th class="table-head">Director</th>
-                                <th class="table-head">Cast</th>
-                                <th class="table-head">Overview</th>
-                                <th class="table-head">Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer-->
     <div id="footer">
-        <p>May the "for (ce : B => {U});"</p>
+        <p>May the "for (ce : B => {u});"</p>
     </div>
     <!-- <footer id="footer">
         <span class="bottom">Movie Database</span>

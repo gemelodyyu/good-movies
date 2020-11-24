@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://"postgres":postgres@127.0.0.1:5432/ETL_Project'
 conn = psycopg2.connect(
-    host ="datavizgroup7.c0yvlavqskus.us-west-2.rds.amazonaws.com",
+    host="datavizgroup7.c0yvlavqskus.us-west-2.rds.amazonaws.com",
     dbname="postgres",
     user="postgres",
     password="sealab2021")
@@ -21,27 +21,50 @@ db = SQLAlchemy(app)
 def index():
     return render_template("index.html")
 
+
 @app.route('/star.html')
 def star():
     return render_template("star.html")
+
+
+@app.route('/statistics.html')
+def statistics():
+    return render_template("statistics.html")
+
+
+@app.route('/api/statistics')
+def fetchStatis():
+    cursor.execute('SELECT m.title, m.release_date, m.runtime, m.budget, m.revenue, r.rating, i.oscar_nominations FROM movie_meta m INNER JOIN ratings r ON m.id = r."movieId" LEFT JOIN oscars o on m.title = o.title LEFT JOIN oscarindex i on m.title = i.film')
+    columns = ('title', 'release_date', 'runtime', 'budget',
+              'revenue', 'ratings', 'oscar_nominations')
+    results = []
+    for row in cursor.fetchall():
+        results.append(dict(zip(columns, row)))
+    films = json.dumps(results, default=str)
+    return films
+
 
 @app.route('/comparison.html')
 def CompData():
     return render_template("comparison.html")
 
+
 @app.route('/api/comparison')
 def fetchOscarData():
     cursor.execute('SELECT m.release_date, m.budget, m.revenue, r.rating, i.oscar_nominations FROM movie_meta m INNER JOIN ratings r ON m.id = r."movieId" LEFT JOIN oscars o ON m.title = o.title LEFT JOIN oscarindex i ON m.title = i.film')
-    columns = ('release_date', 'budget', 'revenue', 'ratings', 'oscar_nominations')
+    columns = ('release_date', 'budget', 'revenue',
+               'ratings', 'oscar_nominations')
     results = []
     for row in cursor.fetchall():
-        results.append(dict(zip(columns,row)))
+        results.append(dict(zip(columns, row)))
     films = json.dumps(results, default=str)
     return films
+
 
 @app.route('/data.html')
 def data():
     return render_template("data.html")
+
 
 @app.route('/api/data')
 def fetchData():
@@ -50,25 +73,27 @@ def fetchData():
     
     results = []
     for row in cursor.fetchall():
-        results.append(dict(zip(columns,row)))
+        results.append(dict(zip(columns, row)))
 
     films = json.dumps(results, default=str)
-    
+
     return films
+
 
 @app.route('/api/')
 def getData():
     cursor.execute("SELECT * FROM movie_meta LIMIT 10")
-    columns = ('id', 'title', 'release_date', 'runtime', 'genres', 'adult', 'budget', 'revenue','production_companies',
-        'imdb_id')
-    
+    columns = ('id', 'title', 'release_date', 'runtime', 'genres', 'adult', 'budget', 'revenue', 'production_companies',
+               'imdb_id')
+
     results = []
     for row in cursor.fetchall():
-        results.append(dict(zip(columns,row)))
+        results.append(dict(zip(columns, row)))
 
     films = json.dumps(results, default=str)
-    
+
     return films
+
 
 if __name__ == '__main__':
     app.run()

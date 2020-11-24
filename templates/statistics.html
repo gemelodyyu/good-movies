@@ -50,8 +50,18 @@
 
   <div class="container">
     <div class="jumbotron text-center">
-      <h1>Movie Statistics by Year</h1>
-      <p>Below you will find interactive charts to explore movie statistics by year</p>
+      <div class="row">
+        <div class = "col-md-2">
+            <img src = ../static/images/video-camera.png height = "100" width = "100">
+        </div>
+        <div class="col-md-8">
+          <h1>Movie Statistics by Year</h1>
+          <p>Below you will find interactive charts to explore movie statistics by year</p>
+        </div>
+        <div class = "col-md-2">
+            <img src = ../static/images/video-camera.png height = "100" width = "100">
+        </div>  
+      </div>
     </div>
 
     <div class="row">
@@ -61,23 +71,27 @@
           <select id="selDataset"></select>
         </div>
       </div>
-      <div class="col-md-8">
-
-      </div>
+      <div class="col-md-8"></div>
     </div>
-
-    <div id="plot"></div>
-
     <br>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Most Profitable Movie of the Year</h3>
+
+    <div class="row">
+      <div class="col-md-9">
+        <div id="plot"></div>
       </div>
-      <table id="sample-metadata" class="table table-striped">
-        <tbody></tbody>
-      </table>
-      <div id="sample-metadata" class="panel-body"></div>
+      <div class="col-md-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">Most Profitable Movie of the Year</h4>
+          </div>
+          <table id="sample-metadata" class="table table-striped">
+            <tbody></tbody>
+          </table>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
     </div>
+
     <br>
 
     <div id="bubble"></div>

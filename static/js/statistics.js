@@ -57,7 +57,10 @@ d3.json("/api/statistics").then((importData) => {
             //   text: reversedData.map(object => object.title),
             name: "Movie",
             type: "bar",
-            orientation: "h"
+            orientation: "h",
+            marker: {
+                color: '#943232'
+            }
         };
         // data
         var barData = [trace1];
@@ -65,10 +68,8 @@ d3.json("/api/statistics").then((importData) => {
         var barLayout = {
             title: "Top 10 Movies Based on Revenue",
             xaxis: { title: "Revenue" },
-            yaxis: { title: "Title" },
             margin: {
-                l: 300,
-                r: 80,
+                l: 275,
                 t: 80,
                 b: 80
             }
@@ -122,10 +123,15 @@ d3.json("/api/statistics").then((importData) => {
 			y: allBudget,
 			mode: 'markers',
 			marker: {
-                size: 10,
-                
+                size: allRevenue/10,
 				color: allRating,
                 colorscale: "Portland",
+                colorscale: [
+                    ['0.0', '#000000'],
+                    ['0.5556','#943232'],
+                    ['.77778', '#f79707'],
+                    ['1.0', '#ffbf00']
+                ],
                 showscale: true
 			},
 			text: allTitle

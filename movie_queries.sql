@@ -91,14 +91,15 @@ INNER JOIN ratings r ON m.id = r."movieId";
 
 
 -- DASHBOARD PAGE
--- Select release date, budget, revenue, ratings 
-SELECT m.release_date, m.budget, m.revenue, r.rating
-FROM movie_meta m INNER JOIN ratings r
-ON m.id = r."movieId";
+-- Select title, release date, runtime, budget, revenue, ratings 
+SELECT m.title, m.release_date, m.runtime, m.budget, m.revenue, r.rating, i.oscar_nominations
+FROM movie_meta m INNER JOIN ratings r ON m.id = r."movieId"
+LEFT JOIN oscars o on m.title = o.title
+LEFT JOIN oscarindex i on m.title = i.film;
 
 -- OSCARS PAGE
--- Select budget, revenue, ratings, oscar nominations
-SELECT m.budget, m.revenue, r.rating, i.oscar_nominations
+-- Select release date, budget, revenue, ratings, oscar nominations
+SELECT m.release_date, m.budget, m.revenue, r.rating, i.oscar_nominations
 FROM movie_meta m INNER JOIN ratings r ON m.id = r."movieId"
 LEFT JOIN oscars o ON m.title = o.title
 LEFT JOIN oscarindex i ON m.title = i.film;

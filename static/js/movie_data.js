@@ -1,5 +1,4 @@
 d3.json("/api/data").then(movieData => {
-    console.log(movieData)
     // // from data.js
     // var tableData = data;
 
@@ -13,7 +12,7 @@ d3.json("/api/data").then(movieData => {
         d.movie_cast = d.movie_cast.replaceAll("'","\"").replaceAll('None','"None"')
         try {
             d.movie_cast = JSON.parse(d.movie_cast)   
-        } catch {}
+        } catch {d.movie_cast = "Data Not Available"}
 
         // Parse director as JSON via a cheap hack
         d.movie_crew = d.movie_crew.split(",",6)
@@ -22,6 +21,7 @@ d3.json("/api/data").then(movieData => {
         d.movie_crew = "{" + d.movie_crew + "}"
         d.movie_crew = JSON.parse(d.movie_crew)
     })
+    console.log(movieData)
 
     // Find html tags/selectors
     var thead = d3.select("thead");
@@ -40,14 +40,16 @@ d3.json("/api/data").then(movieData => {
             for (var i=0; i<movie.genres.length; i++) {
                 genres.push(movie.genres[i].name);
             }
-            // genres.forEach(function(g) {
-            //     console.log(g)
-            // })
             var date = movie.release_date;
             var director = movie.movie_crew.name;
             var cast = []
             for (var i=0; i<movie.movie_cast.length; i++) {
-                cast.push(movie.movie_cast[i].name)
+                if (movie.movie_cast != "Data Not Available") {
+                    cast.push(movie.movie_cast[i].name)
+                }
+                else {
+                    cast = "Data Not Available"
+                }
             }
             var overview = movie.overview;
             var rating = movie.rating;
@@ -70,29 +72,47 @@ d3.json("/api/data").then(movieData => {
     // console.log(movieData[0])
 
     // Define filter function
+    // Filter function requires true/false criteria to be defined and rows that return "true" are
+    // added to filteredArray
     function filterer(data, att, value) {
         var filteredArray = data.filter(function (d) {
             if (att == "release_date") {
                 return d[att].split('-')[0] == value.trim();
             } 
-            else if (att == "movie_crew") {
+            if (att == "movie_crew") {
                 return d[att].name.toLowerCase().trim() === value.toLowerCase().trim();
             }
             // TO FIX: Return rows containing value in list of genres
-            else if (att=="genres") {
-                movieData.forEach(function (movie) {
-                    var genres = []
-                    for (var i=0; i<movie.genres.length; i++) {
-                        genres.push(movie.genres[i].name);
-                    }
-                    console.log(genres)
-                    console.log(genres.includes(value))
-                    if (genres.includes(value)) {return d[att]}
-                })       
+            if (att=="genres") {
+                // movieData.forEach(function (movie) {
+                var genres = []
+                //     for (var i=0; i<movie.genres.length; i++) {
+                //         // genres.push(movie.genres[i].name)
+                //         var temp_genres = movie.genres[i].name.split(",")
+                //         temp_genres.forEach(g => genres.push(g))
+                //     }
+                //     console.log(genres)
+                //     console.log(genres.includes(value))
+                //     if (genres.includes(value)) {
+                //         // console.log(d[att])
+                //         // return d[att]
+                //     }
+                // })       
+                for (genre of d.genres) {
+                    genres.push(genre.name)
+                }
+                // console.log(genres)
+                return genres.includes(value)
+            }
+            if (att == "movie_cast") {
+                var actors = []
+                for (actor of d.movie_cast) {
+                    actors.push(actor.name)
+                }
+                return actors.includes(value)
             }
 
-            else if (att == "title") {
-                console.log(d[att].toLowerCase().trim()== value.toLowerCase().trim())
+            if (att == "title") {
                 return d[att].toLowerCase().trim() == value.toLowerCase().trim();
             }
         });

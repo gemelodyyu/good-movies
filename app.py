@@ -68,9 +68,9 @@ def data():
 
 @app.route('/api/data')
 def fetchData():
-    columns = ('title', 'genres', 'release_date', 'movie_crew',
-               'movie_cast', 'overview', 'rating')
-
+    cursor.execute('SELECT m.title, m.genres, m.release_date, c.movie_crew, c.movie_cast, m.overview, r.rating FROM movie_meta m INNER JOIN credits c ON m.id = c.id INNER JOIN ratings r ON m.id = r."movieId" LIMIT 150')
+    columns = ('title', 'genres', 'release_date', 'movie_crew', 'movie_cast', 'overview', 'rating')
+    
     results = []
     for row in cursor.fetchall():
         results.append(dict(zip(columns, row)))

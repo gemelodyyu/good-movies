@@ -1,7 +1,5 @@
 d3.json("/api/data").then(movieData => {
-    // // from data.js
-    // var tableData = data;
-
+    
     // Clean data 
     movieData.forEach(function(d) {
     // Parse genres as JSON
@@ -71,9 +69,8 @@ d3.json("/api/data").then(movieData => {
     // Create unfiltered table
     tabler(movieData);
 
-    // console.log(movieData[0])
-
     // Define filter function
+
     // Filter function requires true/false criteria to be defined and rows that return "true" are
     // added to filteredArray
     function filterer(data, att, value) {
@@ -84,26 +81,12 @@ d3.json("/api/data").then(movieData => {
             if (att == "movie_crew") {
                 return d[att].name.toLowerCase().trim() === value.toLowerCase().trim();
             }
-            // TO FIX: Return rows containing value in list of genres
+
             if (att=="genres") {
-                // movieData.forEach(function (movie) {
-                var genres = []
-                //     for (var i=0; i<movie.genres.length; i++) {
-                //         // genres.push(movie.genres[i].name)
-                //         var temp_genres = movie.genres[i].name.split(",")
-                //         temp_genres.forEach(g => genres.push(g))
-                //     }
-                //     console.log(genres)
-                //     console.log(genres.includes(value))
-                //     if (genres.includes(value)) {
-                //         // console.log(d[att])
-                //         // return d[att]
-                //     }
-                // })       
+                var genres = []      
                 for (genre of d.genres) {
                     genres.push(genre.name)
                 }
-                // console.log(genres)
                 return genres.includes(value)
             }
             if (att == "movie_cast") {
